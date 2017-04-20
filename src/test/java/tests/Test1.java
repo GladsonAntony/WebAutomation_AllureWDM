@@ -9,6 +9,7 @@ import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
+
 public class Test1 extends PageFactoryInitializer
 {	
 	@TestCaseId("TC_GMail_001")

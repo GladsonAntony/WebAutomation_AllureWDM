@@ -29,7 +29,7 @@
 			<artifactId>testng</artifactId>
 			<version>6.11</version>
 		</dependency>
-		
+
 
 		<!-- Selenium Webdriver Dependency -->
 		<dependency>
@@ -272,6 +272,13 @@
 			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Automation Remarks Video Recorder TestNG Dependency -->
+		<dependency>
+			<groupId>com.automation-remarks</groupId>
+			<artifactId>video-recorder-testng</artifactId>
+			<version>1.4</version>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -338,6 +345,12 @@
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</argLine>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>com.automation.remarks.testng.VideoListener</value>
+						</property>
+					</properties>
 				</configuration>
 				<dependencies>
 					<dependency>

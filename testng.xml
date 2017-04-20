@@ -4,10 +4,11 @@
 	data-provider-thread-count="5">
 	<listeners>
 		<listener class-name="listeners.AllureListener"></listener>
+		<listener class-name="com.automation.remarks.testng.VideoListener"></listener>
 	</listeners>
 
 	<test name="TestGoogle">
-		<parameter name="browser" value="Firefox"></parameter>
+		<parameter name="browser" value="Chrome"></parameter>
 		<parameter name="url" value="https://www.google.co.in/"></parameter>
 		<classes>
 			<class name="tests.Test1" />
