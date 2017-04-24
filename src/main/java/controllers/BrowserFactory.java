@@ -14,12 +14,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
-import io.github.bonigarcia.wdm.PhantomJsDriverManager;
-
 /**
  * @Author Gladson Antony
  * @Date 08-Feb-2017
@@ -36,7 +30,6 @@ public class BrowserFactory extends InitMethod
 		switch(browser.toLowerCase())
 		{
 		case "chrome":
-			ChromeDriverManager.getInstance().setup();
 			driver = new ChromeDriver();
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
@@ -45,7 +38,6 @@ public class BrowserFactory extends InitMethod
 			break;
 
 		case  "firefox":
-			FirefoxDriverManager.getInstance().forceCache().setup();
 			driver = new FirefoxDriver();
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
@@ -54,7 +46,6 @@ public class BrowserFactory extends InitMethod
 			break;
 
 		case  "ie":
-			InternetExplorerDriverManager.getInstance().setup();
 			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer(); 
 			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
 			driver = new InternetExplorerDriver(ieCapabilities);
@@ -65,7 +56,6 @@ public class BrowserFactory extends InitMethod
 			break;	
 
 		case  "edge":
-			EdgeDriverManager.getInstance().setup();
 			driver = new EdgeDriver();
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
@@ -80,7 +70,6 @@ public class BrowserFactory extends InitMethod
 			break;
 
 		case  "opera":
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
 			capabilities = DesiredCapabilities.opera();
 			ChromeOptions optionsOpera = new ChromeOptions();
 			optionsOpera.setBinary("C:/Program Files/Opera/launcher.exe");
@@ -92,7 +81,7 @@ public class BrowserFactory extends InitMethod
 			break;
 			
 		case "ghost":
-			PhantomJsDriverManager.getInstance().setup();
+		case "phantom":
 			driver = new PhantomJSDriver();
 			driver.get(url);
 			WebDriverWait wait = new WebDriverWait(driver, 30);
