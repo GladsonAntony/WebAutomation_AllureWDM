@@ -19,8 +19,13 @@ import org.testng.asserts.SoftAssert;
  */
 public class InitMethod 
 {
-	public static String WebsiteURL;
-	public static String Browser;
+	static ApplicationConfigReader appConfig = new ApplicationConfigReader();
+	
+	public static String WebsiteURL = appConfig.getWebsiteUrl();
+	public static String Browser = appConfig.getBrowser();
+	public static int MaxPageLoadTime = appConfig.getMaxPageLoadTime();
+	public static int ImplicitlyWait = appConfig.getImplicitlyWait();
+	public static String VideoFeature = appConfig.getVideoFeature();
 	
 	public static String FS = File.separator;
 

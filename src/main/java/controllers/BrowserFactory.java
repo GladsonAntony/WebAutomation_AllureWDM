@@ -11,6 +11,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,19 +23,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BrowserFactory extends InitMethod
 {
 	@SuppressWarnings("deprecation")
-	static WebDriver createDriver(String browser, String url) throws Exception
+	static WebDriver createDriver() throws Exception
 	{
-		WebDriver driver;
-
+		WebDriver driver;		
 		DesiredCapabilities capabilities;
-		switch(browser.toLowerCase())
+		
+		
+		switch(Browser.toLowerCase())
 		{
 		case "chrome":
 			driver = new ChromeDriver();
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(url);
+			driver.get(WebsiteURL);
 			break;
 
 		case  "firefox":
@@ -42,17 +44,18 @@ public class BrowserFactory extends InitMethod
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
 			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(url);
+			driver.get(WebsiteURL);
 			break;
 
 		case  "ie":
+		case "internet explorer":
 			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer(); 
 			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
 			driver = new InternetExplorerDriver(ieCapabilities);
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-			driver.get(url);
+			driver.get(WebsiteURL);
 			break;	
 
 		case  "edge":
@@ -60,13 +63,13 @@ public class BrowserFactory extends InitMethod
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(url);
+			driver.get(WebsiteURL);
 			break;
 
 		case  "unit":
 			driver = new HtmlUnitDriver();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(url);
+			driver.get(WebsiteURL);
 			break;
 
 		case  "opera":
@@ -77,17 +80,24 @@ public class BrowserFactory extends InitMethod
 			driver = new ChromeDriver(capabilities);
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(url);
+			driver.get(WebsiteURL);
 			break;
 			
 		case "ghost":
 		case "phantom":
 			driver = new PhantomJSDriver();
-			driver.get(url);
+			driver.get(WebsiteURL);
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.urlContains(url));
+			wait.until(ExpectedConditions.urlContains(WebsiteURL));
 			break;
-
+			
+		case "safari":
+			driver = new SafariDriver();
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.get(WebsiteURL);
+			break;
+			
 		default:
 			throw new Exception("Please Provide a Valid Browser");
 		}

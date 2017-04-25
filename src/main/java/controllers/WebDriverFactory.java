@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 
 import com.automation.remarks.video.enums.RecorderType;
 import com.automation.remarks.video.enums.RecordingMode;
@@ -30,13 +29,10 @@ public class WebDriverFactory extends BrowserFactory
 	public static String browser;
 	public static String url;
 
-	@Parameters({ "browser" , "url" })
 	@BeforeTest(alwaysRun=true)
-	public void suiteSetup(String browser, String url) throws Exception
+	public void suiteSetup() throws Exception
 	{
-		WebDriverFactory.browser = browser;
-		WebDriverFactory.url=url;
-		switch(browser.toLowerCase())
+		switch(Browser.toLowerCase())
 		{
 		case "chrome":
 			ChromeDriverManager.getInstance().setup();
@@ -47,6 +43,7 @@ public class WebDriverFactory extends BrowserFactory
 			break;
 
 		case  "ie":
+		case "internet explorer":
 			InternetExplorerDriverManager.getInstance().setup();
 			break;	
 
@@ -62,6 +59,9 @@ public class WebDriverFactory extends BrowserFactory
 		case "phantom":
 			PhantomJsDriverManager.getInstance().setup();
 			break;
+			
+		case "safari":
+			break;
 
 		default:
 			throw new Exception("Please Provide a Valid Browser");
@@ -70,21 +70,41 @@ public class WebDriverFactory extends BrowserFactory
 
 	@BeforeMethod
 	public void beforeMethod() throws Exception
-	{		
-		InitMethod.Browser=browser;
-		InitMethod.WebsiteURL=url;
-		System.out.println("Browser: "+browser);
-		System.out.println("WebsiteURL: "+url);
+	{
+		System.out.println("Browser: "+Browser);
+		System.out.println("WebsiteURL: "+WebsiteURL);
 		new WebDriverFactory();
-		WebDriver driver = WebDriverFactory.createDriver(browser,url);
+		WebDriver driver = WebDriverFactory.createDriver();
 		setWebDriver(driver);
-
+		
+		if(VideoFeature.toLowerCase().contains("enabledfailed"))
+		{
+			setupVideoRecordingFailedOnly();
+		}
+		else if(VideoFeature.toLowerCase().contains("enabledall"))
+		{
+			setupVideoRecordingAll();
+		}
+	}
+	
+	public void setupVideoRecordingFailedOnly() throws Exception
+	{
 		VideoRecorder.conf()
-		.withVideoFolder("./src/test/resources/Videos")         				// Default is ${user.dir}/video.
-		.videoEnabled(true)                       										// Disabled video globally
-		.withVideoSaveMode(VideoSaveMode.FAILED_ONLY)     		// Save videos for passed and failed tests
-		.withRecorderType(RecorderType.MONTE)    						// Monte is Default recorder
-		.withRecordMode(RecordingMode.ALL)  ;								// Record video only for tests with @Video
+		.withVideoFolder("./src/test/resources/Videos")     // Default is ${user.dir}/video.
+		.videoEnabled(true)                       			// Disabled video globally
+		.withVideoSaveMode(VideoSaveMode.FAILED_ONLY)     	// Save videos ONLY FAILED tests
+		.withRecorderType(RecorderType.MONTE)    			// Monte is Default recorder
+		.withRecordMode(RecordingMode.ALL)  ;				// Record video only for tests with @Video
+	}
+	
+	public void setupVideoRecordingAll() throws Exception
+	{
+		VideoRecorder.conf()
+		.withVideoFolder("./src/test/resources/Videos")     // Default is ${user.dir}/video.
+		.videoEnabled(true)                       			// Disabled video globally
+		.withVideoSaveMode(VideoSaveMode.ALL)     			// Save videos All tests
+		.withRecorderType(RecorderType.MONTE)    			// Monte is Default recorder
+		.withRecordMode(RecordingMode.ALL)  ;				// Record video only for tests with @Video
 	}
 
 	public void setWebDriver(WebDriver driver) 
