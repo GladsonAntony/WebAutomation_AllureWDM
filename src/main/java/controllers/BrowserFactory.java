@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,54 +23,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserFactory extends InitMethod
 {
+	static WebDriver driver;		
+	static DesiredCapabilities capabilities;
+
+
 	@SuppressWarnings("deprecation")
 	static WebDriver createDriver() throws Exception
 	{
-		WebDriver driver;		
-		DesiredCapabilities capabilities;
-		
-		
+
 		switch(Browser.toLowerCase())
 		{
 		case "chrome":
 			driver = new ChromeDriver();
-			driver.manage().deleteAllCookies();
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;
 
 		case  "firefox":
 			driver = new FirefoxDriver();
-			driver.manage().deleteAllCookies();
-			driver.manage().window().maximize();
-			//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;
 
 		case  "ie":
 		case "internet explorer":
 			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer(); 
 			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
-			driver = new InternetExplorerDriver(ieCapabilities);
-			driver.manage().deleteAllCookies();
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;	
 
 		case  "edge":
 			driver = new EdgeDriver();
-			driver.manage().deleteAllCookies();
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;
 
 		case  "unit":
 			driver = new HtmlUnitDriver();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;
 
 		case  "opera":
@@ -78,29 +61,46 @@ public class BrowserFactory extends InitMethod
 			optionsOpera.setBinary("C:/Program Files/Opera/launcher.exe");
 			capabilities.setCapability(ChromeOptions.CAPABILITY, optionsOpera);
 			driver = new ChromeDriver(capabilities);
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;
-			
+
 		case "ghost":
 		case "phantom":
 			driver = new PhantomJSDriver();
-			driver.get(WebsiteURL);
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.urlContains(WebsiteURL));
 			break;
-			
+
 		case "safari":
 			driver = new SafariDriver();
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.get(WebsiteURL);
 			break;
-			
+
 		default:
-			throw new Exception("Please Provide a Valid Browser");
+			throw new NotFoundException("Browser Not Found. Please Provide a Valid Browser");
+		}
+		if(ImplicitlyWait > 0)
+		{
+			implicitlywait(ImplicitlyWait);
+		}
+
+		if(MaxPageLoadTime > 0)
+		{
+			setMaxPageLoadTime(MaxPageLoadTime);
+		}
+		driver.get(WebsiteURL);
+		if(!Browser.toLowerCase().contains("unit") || !Browser.toLowerCase().contains("ghost") || !Browser.toLowerCase().contains("phantom"))
+		{
+			driver.manage().window().maximize();
 		}
 		return driver;		
+	}
+
+	public static void implicitlywait(int timeInSeconds) throws Exception
+	{
+		driver.manage().timeouts().implicitlyWait(timeInSeconds, TimeUnit.SECONDS);
+	}
+
+	public static void setMaxPageLoadTime(int timeInSeconds) throws Exception
+	{
+		driver.manage().timeouts().pageLoadTimeout(timeInSeconds, TimeUnit.SECONDS);
 	}
 }

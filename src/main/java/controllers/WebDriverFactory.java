@@ -3,6 +3,7 @@
  */
 package controllers;
 
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -35,6 +36,7 @@ public class WebDriverFactory extends BrowserFactory
 		switch(Browser.toLowerCase())
 		{
 		case "chrome":
+		case "opera":
 			ChromeDriverManager.getInstance().setup();
 			break;
 
@@ -51,10 +53,6 @@ public class WebDriverFactory extends BrowserFactory
 			EdgeDriverManager.getInstance().setup();
 			break;
 
-		case  "opera":
-			ChromeDriverManager.getInstance().setup();
-			break;
-
 		case "ghost":
 		case "phantom":
 			PhantomJsDriverManager.getInstance().setup();
@@ -64,7 +62,7 @@ public class WebDriverFactory extends BrowserFactory
 			break;
 
 		default:
-			throw new Exception("Please Provide a Valid Browser");
+			throw new NotFoundException("Browser Not Found. Please Provide a Valid Browser");
 		}
 	}
 
@@ -90,21 +88,21 @@ public class WebDriverFactory extends BrowserFactory
 	public void setupVideoRecordingFailedOnly() throws Exception
 	{
 		VideoRecorder.conf()
-		.withVideoFolder("./src/test/resources/Videos")     // Default is ${user.dir}/video.
-		.videoEnabled(true)                       			// Disabled video globally
+		.withVideoFolder("./src/test/resources/Videos")     					// Default is ${user.dir}/video.
+		.videoEnabled(true)                       										// Disabled video globally
 		.withVideoSaveMode(VideoSaveMode.FAILED_ONLY)     	// Save videos ONLY FAILED tests
-		.withRecorderType(RecorderType.MONTE)    			// Monte is Default recorder
-		.withRecordMode(RecordingMode.ALL)  ;				// Record video only for tests with @Video
+		.withRecorderType(RecorderType.MONTE)    						// Monte is Default recorder
+		.withRecordMode(RecordingMode.ALL)  ;							// Record video only for tests with @Video
 	}
 	
 	public void setupVideoRecordingAll() throws Exception
 	{
 		VideoRecorder.conf()
-		.withVideoFolder("./src/test/resources/Videos")     // Default is ${user.dir}/video.
-		.videoEnabled(true)                       			// Disabled video globally
-		.withVideoSaveMode(VideoSaveMode.ALL)     			// Save videos All tests
-		.withRecorderType(RecorderType.MONTE)    			// Monte is Default recorder
-		.withRecordMode(RecordingMode.ALL)  ;				// Record video only for tests with @Video
+		.withVideoFolder("./src/test/resources/Videos")     					// Default is ${user.dir}/video.
+		.videoEnabled(true)                       										// Disabled video globally
+		.withVideoSaveMode(VideoSaveMode.ALL)     						// Save videos All tests
+		.withRecorderType(RecorderType.MONTE)    						// Monte is Default recorder
+		.withRecordMode(RecordingMode.ALL)  ;							// Record video only for tests with @Video
 	}
 
 	public void setWebDriver(WebDriver driver) 
