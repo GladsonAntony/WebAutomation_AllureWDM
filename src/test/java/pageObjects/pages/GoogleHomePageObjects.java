@@ -3,11 +3,18 @@
  */
 package pageObjects.pages;
 
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import utils.AllureAttachments;
 import utils.FluentWaiting;
 import utils.RandomGenerator;
 
@@ -28,7 +35,10 @@ public class GoogleHomePageObjects extends PageFactoryInitializer
 	public GoogleHomePageObjects clickonGmailLink() throws Exception
 	{
 		FluentWaiting.waitUntillElementToBeClickable(5, 500, GmailLink);
-		click(GmailLink);
+		/*Screenshot screenshot = new AShot().takeScreenshot(getWebDriver(), GmailLink);
+		ImageIO.write(screenshot.getImage(), "PNG", new File(TestData + "div_element.png"));	*/
+		click(GmailLink);	
+		AllureAttachments.attachFileType_XLSX(ExcelFiles + "TestData.xlsx");
 		return this;		
 	}
 
@@ -36,6 +46,7 @@ public class GoogleHomePageObjects extends PageFactoryInitializer
 	public GoogleHomePageObjects enterTextToSearchBox() 
 	{
 		SearchBox.sendKeys(RandomGenerator.GenerateRandomEMAILIDs("google.com"));
+		AllureAttachments.saveWebElement(SearchBox, getWebDriver());
 		return this;	
 	}
 
