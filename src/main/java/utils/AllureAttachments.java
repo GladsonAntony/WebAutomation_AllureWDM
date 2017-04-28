@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
@@ -46,13 +48,14 @@ public class AllureAttachments
 	
 	/** To Attach the WebElement to the Report*/
 	@Attachment(value = "Attachment of WebElement {0}", type = "image/png")
-	public static byte[] saveWebElement(WebElement element, WebDriver driver) 
+	public static byte[] saveWebElement(WebDriver driver,WebElement element) 
 	{
 		try
 		{
-			BufferedImage image  = new AShot()
-					.shootingStrategy(ShootingStrategies.viewportPasting(1000))
-					.takeScreenshot(driver, element)
+			BufferedImage image  = Shutterbug
+					.shootElement(driver,element)
+					.withName(element.getText())
+					.withTitle(element.getText())
 					.getImage();
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(image, "png", baos);

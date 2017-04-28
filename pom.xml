@@ -279,6 +279,14 @@
 			<artifactId>video-recorder-testng</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+		<!-- Selenium ShutterBag Dependeny to capture Images -->
+		<dependency>
+			<groupId>com.assertthat</groupId>
+			<artifactId>selenium-shutterbug</artifactId>
+			<version>0.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<profiles>
