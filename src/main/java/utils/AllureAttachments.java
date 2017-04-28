@@ -72,7 +72,7 @@ public class AllureAttachments
 	}
 	
 	
-	/** To Convert the File to Bytes*/
+	/** To Convert File to Bytes*/
 	private static byte[] fileToBytes(String fileName) throws Exception 
 	{
 		File file = new File(fileName);
