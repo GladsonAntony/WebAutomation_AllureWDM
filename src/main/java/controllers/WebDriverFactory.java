@@ -36,6 +36,7 @@ public class WebDriverFactory extends BrowserFactory
 		switch(Browser.toLowerCase())
 		{
 		case "chrome":
+		case "chrome_headless":
 		case "opera":
 			ChromeDriverManager.getInstance().setup();
 			break;

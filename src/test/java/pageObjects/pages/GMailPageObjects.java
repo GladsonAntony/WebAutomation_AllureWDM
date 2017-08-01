@@ -17,10 +17,10 @@ import ru.yandex.qatools.allure.annotations.Step;
  */
 public class GMailPageObjects extends PageFactoryInitializer
 {
-	@FindBy(xpath="//input[@id='Email']")
+	@FindBy(xpath="//input[@type='email']")
 	private WebElement emailIDTextBox;
 	
-	@FindBy(xpath="//input[@id='next']")
+	@FindBy(xpath="//span[contains(text(),'Next')]")
 	private WebElement nextButton;
 
 	@Step("To Enter Email ID and Click Next Button")

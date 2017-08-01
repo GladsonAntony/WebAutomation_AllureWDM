@@ -37,6 +37,13 @@ public class BrowserFactory extends InitMethod
 			driver = new ChromeDriver();
 			break;
 
+		case "chrome_headless":
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--headless");  
+			chromeOptions.addArguments("--disable-gpu");  
+			driver = new ChromeDriver(chromeOptions);
+			break;
+
 		case  "firefox":
 			driver = new FirefoxDriver();
 			break;

@@ -13,11 +13,12 @@
 		<compiler.version>1.8</compiler.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<selenium.version>3.3.1</selenium.version>
+		<selenium.version>3.4.0</selenium.version>
 		<allure.version>1.5.2</allure.version>
 		<aspectj.version>1.8.10</aspectj.version>
 		<apachepoi.version>3.13</apachepoi.version>
 		<slf4j.version>1.7.24</slf4j.version>
+		<webdrivermanager.version>1.7.1</webdrivermanager.version>
 	</properties>
 
 	<!-- All the Dependencies Added Here -->
@@ -99,7 +100,7 @@
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
-			<version>1.6.2</version>
+			<version>${webdrivermanager.version}</version>
 		</dependency>
 
 
@@ -245,6 +246,7 @@
 		</dependency>
 
 
+		<!-- SLF4J API Dependency -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -252,6 +254,8 @@
 			<scope>test</scope>
 		</dependency>
 
+
+		<!-- SLF4J Log4j Dependency -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -259,6 +263,8 @@
 			<scope>test</scope>
 		</dependency>
 
+
+		<!-- SLF4J jull-2-SLL4J Dependency -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jul-to-slf4j</artifactId>
@@ -266,12 +272,15 @@
 			<scope>test</scope>
 		</dependency>
 
+
+		<!-- SLF4J jcl-over-SL4J Dependency -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 
 		<!-- Automation Remarks Video Recorder TestNG Dependency -->
 		<dependency>
@@ -280,13 +289,13 @@
 			<version>1.4</version>
 		</dependency>
 
+
 		<!-- Selenium ShutterBag Dependeny to capture Images -->
 		<dependency>
 			<groupId>com.assertthat</groupId>
 			<artifactId>selenium-shutterbug</artifactId>
 			<version>0.6</version>
 		</dependency>
-
 	</dependencies>
 
 	<profiles>
@@ -367,7 +376,7 @@
 
 			<!-- To Display the Environment Details in the Allure Report/Copy Enivroment.XML 
 				File to allure-results Folder -->
-			<plugin>
+			<!-- <plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
 				<executions>
@@ -390,7 +399,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 
 			<!--Needed only to show reports locally. Run jetty:run and open localhost:8080 
 				to show the report -->

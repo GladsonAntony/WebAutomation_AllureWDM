@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Glady AutF_AllureParallel" thread-count="1" parallel="methods"
-	data-provider-thread-count="1">
+<suite name="Glady AutF_AllureParallel" thread-count="5" parallel="methods"
+	data-provider-thread-count="5">
 	<listeners>
 		<listener class-name="listeners.AllureListener"></listener>
 		<listener class-name="com.automation.remarks.testng.VideoListener"></listener>
 	</listeners>
 
 	<test name="TestGoogle">
-		<parameter name="browser" value="ie"></parameter>
+		<parameter name="browser" value="Firefox"></parameter>
 		<parameter name="url" value="https://www.google.co.in/"></parameter>
 		<classes>
 			<class name="tests.Test1" />
