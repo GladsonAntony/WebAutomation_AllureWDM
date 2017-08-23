@@ -46,12 +46,12 @@ $ mvn clean test
 
 ```sh
 $ mvn clean test -DBrowserType=Chrome			#Chrome
-$ mvn clean test -DBrowserType=Chrome_Headless	#Chrome Headless
+$ mvn clean test -DBrowserType=Chrome_Headless		#Chrome Headless
 $ mvn clean test -DBrowserType=Firefox			#Mozilla Firefox
-$ mvn clean test -DBrowserType=IE				#Internet Explorer
+$ mvn clean test -DBrowserType=IE			#Internet Explorer
 $ mvn clean test -DBrowserType=Opera			#Opera Blink
-$ mvn clean test -DBrowserType=Edge				#Microsoft Edge
-$ mvn clean test -DBrowserType=Unit				#HTML Unit Headerless Browser
+$ mvn clean test -DBrowserType=Edge			#Microsoft Edge
+$ mvn clean test -DBrowserType=Unit			#HTML Unit Headerless Browser
 ```
 ---
 ### Report Generation
@@ -74,26 +74,26 @@ $ mvn jetty:run -Djetty.http.port=9988
  - To use different xlsx file, Create a new `@DataProvider` method and change the workbook name.
 ```java
 @DataProvider(name="multiSheetExcelRead", parallel=true)
-	public static Object[][] multiSheetExcelRead(Method method) throws Exception
-	{
-		File file = new File("./src/test/resources/Excel Files/TestData.xlsx");
-		String SheetName = method.getName();
-		System.out.println(SheetName);
-		Object testObjArray[][] = ExcelUtils.getTableArray(file.getAbsolutePath(), SheetName);
-		return testObjArray;
-	}
+public static Object[][] multiSheetExcelRead(Method method) throws Exception
+{
+	File file = new File("./src/test/resources/Excel Files/TestData.xlsx");
+	String SheetName = method.getName();
+	System.out.println(SheetName);
+	Object testObjArray[][] = ExcelUtils.getTableArray(file.getAbsolutePath(), SheetName);
+	return testObjArray;
+}
 ```
 
 **__Method 2:__**
  - Create Excel Workbook with the same name as your method Name.
 ```java
 @DataProvider(name="excelSheetNameAsMethodName",parallel=true)
-	public static Object[][] excelSheetNameAsMethodName(Method method) throws Exception
-	{
-		File file = new File("./src/test/resources/Excel Files/"+method.getName()+".xlsx");
-		Object testObjArray[][] = ExcelUtils.getTableArray(file.getAbsolutePath());
-		return testObjArray;
-	}
+public static Object[][] excelSheetNameAsMethodName(Method method) throws Exception
+{
+	File file = new File("./src/test/resources/Excel Files/"+method.getName()+".xlsx");
+	Object testObjArray[][] = ExcelUtils.getTableArray(file.getAbsolutePath());
+	return testObjArray;
+}
  ```
  ---
  
