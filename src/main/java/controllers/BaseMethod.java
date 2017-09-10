@@ -397,6 +397,4 @@ public class BaseMethod extends WebDriverFactory
 			System.out.println(window);
 		}
 	}
-
-
 }

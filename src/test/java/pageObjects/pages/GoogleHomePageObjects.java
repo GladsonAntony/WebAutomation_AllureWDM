@@ -6,8 +6,6 @@ package pageObjects.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.assertthat.selenium_shutterbug.core.Shutterbug;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import ru.yandex.qatools.allure.annotations.Step;
 import utils.AllureAttachments;

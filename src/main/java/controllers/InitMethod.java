@@ -19,7 +19,7 @@ import org.testng.asserts.SoftAssert;
  */
 public class InitMethod 
 {
-	static ApplicationConfigReader appConfig = new ApplicationConfigReader();
+	public static ApplicationConfigReader appConfig = new ApplicationConfigReader();
 	
 	public static String WebsiteURL = appConfig.getWebsiteUrl();
 	public static String Browser = appConfig.getBrowser();

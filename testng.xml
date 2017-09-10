@@ -8,8 +8,6 @@
 	</listeners>
 
 	<test name="TestGoogle">
-		<parameter name="browser" value="Firefox"></parameter>
-		<parameter name="url" value="https://www.google.co.in/"></parameter>
 		<classes>
 			<class name="tests.Test1" />
 		</classes>
