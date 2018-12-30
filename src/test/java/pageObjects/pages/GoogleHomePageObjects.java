@@ -3,13 +3,11 @@
  */
 package pageObjects.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import ru.yandex.qatools.allure.annotations.Step;
 import utils.AllureAttachments;
-import utils.FluentWaiting;
 import utils.RandomGenerator;
 
 /**
@@ -28,10 +26,7 @@ public class GoogleHomePageObjects extends PageFactoryInitializer
 	@Step("Click On Gmail Link in the Google Home Page")
 	public GoogleHomePageObjects clickonGmailLink() throws Exception
 	{
-		FluentWaiting.waitUntillElementToBeClickable(5, 500, GmailLink);
 		AllureAttachments.saveWebElement(getWebDriver(), GmailLink);
-		/*Screenshot screenshot = new AShot().takeScreenshot(getWebDriver(), GmailLink);
-		ImageIO.write(screenshot.getImage(), "PNG", new File(TestData + "div_element.png"));	*/
 		click(GmailLink);	
 		AllureAttachments.attachFileType_XLSX(ExcelFiles + "TestData.xlsx");
 		return this;		
@@ -47,7 +42,6 @@ public class GoogleHomePageObjects extends PageFactoryInitializer
 	@Step("Verify the Page Title of the Google Home Page")
 	public GoogleHomePageObjects verifyPageTitle() throws Exception 
 	{
-		FluentWaiting.waitForTitleToBe(5, 500, "Google");
 		return this;
 	}
 

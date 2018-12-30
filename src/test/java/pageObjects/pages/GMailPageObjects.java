@@ -3,12 +3,11 @@
  */
 package pageObjects.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import ru.yandex.qatools.allure.annotations.Step;
 
 /**
  * @author Gladson Antony
@@ -26,7 +25,6 @@ public class GMailPageObjects extends PageFactoryInitializer
 	@Step("To Enter Email ID and Click Next Button")
 	public GMailPageObjects enterEmailID(String emailID) 
 	{
-		utils.FluentWaiting.waitUntillElementToBeClickable(30, 500, emailIDTextBox);
 		emailIDTextBox.sendKeys(emailID);	
 		nextButton.click();
 		return this;
