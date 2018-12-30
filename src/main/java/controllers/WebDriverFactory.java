@@ -1,29 +1,21 @@
-/**
- * 
- */
 package controllers;
 
+import com.automation.remarks.video.enums.RecorderType;
+import com.automation.remarks.video.enums.RecordingMode;
+import com.automation.remarks.video.enums.VideoSaveMode;
+import com.automation.remarks.video.recorder.VideoRecorder;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
-import com.automation.remarks.video.enums.RecorderType;
-import com.automation.remarks.video.enums.RecordingMode;
-import com.automation.remarks.video.enums.VideoSaveMode;
-import com.automation.remarks.video.recorder.VideoRecorder;
-
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
-import io.github.bonigarcia.wdm.PhantomJsDriverManager;
-
 /**
  * @Author Gladson Antony
- * @Date 08-Feb-2017
+ * @Date 30-DEC-2018
  */
+
 public class WebDriverFactory extends BrowserFactory
 {
 	public static ThreadLocal<WebDriver> wd = new ThreadLocal<WebDriver>();
@@ -37,29 +29,29 @@ public class WebDriverFactory extends BrowserFactory
 		{
 		case "chrome":
 		case "chrome_headless":
+			WebDriverManager.chromedriver().setup();
+
 		case "opera":
-			ChromeDriverManager.getInstance().setup();
+			WebDriverManager.operadriver().setup();
 			break;
 
 		case  "firefox":
-			FirefoxDriverManager.getInstance().setup();
+		case "firefox_headless":
+			WebDriverManager.firefoxdriver().arch64().setup();
 			break;
 
 		case  "ie":
 		case "internet explorer":
-			InternetExplorerDriverManager.getInstance().setup();
+			WebDriverManager.iedriver().setup();
 			break;	
 
 		case  "edge":
-			EdgeDriverManager.getInstance().setup();
+			WebDriverManager.edgedriver().setup();
 			break;
 
 		case "ghost":
 		case "phantom":
-			PhantomJsDriverManager.getInstance().setup();
-			break;
-			
-		case "safari":
+			WebDriverManager.phantomjs().setup();
 			break;
 
 		default:
@@ -91,9 +83,9 @@ public class WebDriverFactory extends BrowserFactory
 		VideoRecorder.conf()
 		.withVideoFolder("./src/test/resources/Videos")     					// Default is ${user.dir}/video.
 		.videoEnabled(true)                       										// Disabled video globally
-		.withVideoSaveMode(VideoSaveMode.FAILED_ONLY)     	// Save videos ONLY FAILED tests
+		.withVideoSaveMode(VideoSaveMode.FAILED_ONLY)     		// Save videos ONLY FAILED tests
 		.withRecorderType(RecorderType.MONTE)    						// Monte is Default recorder
-		.withRecordMode(RecordingMode.ALL)  ;							// Record video only for tests with @Video
+		.withRecordMode(RecordingMode.ALL)  ;								// Record video only for tests with @Video
 	}
 	
 	public void setupVideoRecordingAll() throws Exception
@@ -103,7 +95,7 @@ public class WebDriverFactory extends BrowserFactory
 		.videoEnabled(true)                       										// Disabled video globally
 		.withVideoSaveMode(VideoSaveMode.ALL)     						// Save videos All tests
 		.withRecorderType(RecorderType.MONTE)    						// Monte is Default recorder
-		.withRecordMode(RecordingMode.ALL)  ;							// Record video only for tests with @Video
+		.withRecordMode(RecordingMode.ALL)  ;								// Record video only for tests with @Video
 	}
 
 	public void setWebDriver(WebDriver driver) 
