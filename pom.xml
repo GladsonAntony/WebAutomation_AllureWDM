@@ -7,6 +7,13 @@
 	<name>WebAutomation_Allure with WebDriver Manager</name>
 	<description>This is a Selenium Hybrid Project with Allure Reporting Tool</description>
 
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<compiler.version>1.8</compiler.version>
