@@ -1,5 +1,13 @@
 package utils;
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -7,20 +15,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.imageio.ImageIO;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import com.assertthat.selenium_shutterbug.core.Shutterbug;
-
-import ru.yandex.qatools.allure.annotations.Attachment;
-import ru.yandex.qatools.ashot.AShot;
-import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
-
 /**
  * @Author Gladson Antony
- * @Date 26-Jan-2017
+ * @Date 31-DEC-2018
  */
 public class AllureAttachments
 {
