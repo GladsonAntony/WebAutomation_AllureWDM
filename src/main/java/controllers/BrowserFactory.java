@@ -1,24 +1,26 @@
 package controllers;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @Author Gladson Antony
- * @Date 08-Feb-2017
+ * @Date 31-DEC-2018
  */
 
 public class BrowserFactory extends InitMethod
@@ -27,7 +29,6 @@ public class BrowserFactory extends InitMethod
 	static DesiredCapabilities capabilities;
 
 
-	@SuppressWarnings("deprecation")
 	static WebDriver createDriver() throws Exception
 	{
 
@@ -48,6 +49,12 @@ public class BrowserFactory extends InitMethod
 			driver = new FirefoxDriver();
 			break;
 
+		case "firefox_headless":
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.addArguments("--headless");
+			driver =new FirefoxDriver(firefoxOptions);
+			break;
+
 		case  "ie":
 		case "internet explorer":
 			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer(); 
@@ -58,16 +65,10 @@ public class BrowserFactory extends InitMethod
 			driver = new EdgeDriver();
 			break;
 
-		case  "unit":
-			driver = new HtmlUnitDriver();
-			break;
-
 		case  "opera":
-			capabilities = DesiredCapabilities.opera();
-			ChromeOptions optionsOpera = new ChromeOptions();
-			optionsOpera.setBinary("C:/Program Files/Opera/launcher.exe");
-			capabilities.setCapability(ChromeOptions.CAPABILITY, optionsOpera);
-			driver = new ChromeDriver(capabilities);
+			OperaOptions operaOptions = new OperaOptions();
+			operaOptions.setBinary("C:\\Program Files\\Opera\\57.0.3098.106\\opera.exe");
+			driver = new OperaDriver(operaOptions);
 			break;
 
 		case "ghost":
@@ -86,7 +87,7 @@ public class BrowserFactory extends InitMethod
 		}
 		if(ImplicitlyWait > 0)
 		{
-			implicitlywait(ImplicitlyWait);
+			implicitlyWait(ImplicitlyWait);
 		}
 
 		if(MaxPageLoadTime > 0)
@@ -94,14 +95,14 @@ public class BrowserFactory extends InitMethod
 			setMaxPageLoadTime(MaxPageLoadTime);
 		}
 		driver.get(WebsiteURL);
-		if(!Browser.toLowerCase().contains("unit") || !Browser.toLowerCase().contains("ghost") || !Browser.toLowerCase().contains("phantom"))
+		if( !Browser.toLowerCase().contains("ghost") || !Browser.toLowerCase().contains("phantom"))
 		{
 			driver.manage().window().maximize();
 		}
 		return driver;		
 	}
 
-	public static void implicitlywait(int timeInSeconds) throws Exception
+	public static void implicitlyWait(int timeInSeconds) throws Exception
 	{
 		driver.manage().timeouts().implicitlyWait(timeInSeconds, TimeUnit.SECONDS);
 	}

@@ -93,6 +93,14 @@
 		</dependency>
 
 
+		<!-- Ghost/Phantom Webdriver Headerless Browser Dependency -->
+		<dependency>
+			<groupId>com.github.detro</groupId>
+			<artifactId>ghostdriver</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
+
 		<!-- Webdriver Manager Dependency -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
