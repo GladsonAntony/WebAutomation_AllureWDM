@@ -1,6 +1,3 @@
-/**
- * 
- */
 package pageObjects.pages;
 
 import io.qameta.allure.Step;
@@ -10,9 +7,8 @@ import org.testng.Assert;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 
 /**
- * @author Gladson Antony
- * @date Sep 17, 2016
- * 
+ * @Author Gladson Antony
+ * @Date 2021-08-09T00:48:22.442Z
  */
 public class GMailPageObjects extends PageFactoryInitializer
 {
@@ -31,8 +27,7 @@ public class GMailPageObjects extends PageFactoryInitializer
 	}
 
 	@Step("Verify the Page Title of the GMail Page")
-	public GMailPageObjects verifyPageTitle() throws Exception 
-	{
+	public GMailPageObjects verifyPageTitle() {
 		Assert.assertEquals(getWebDriver().getTitle(), "gagagasgasg");
 		return this;
 	}

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controllers;
 
 import java.awt.Rectangle;
@@ -40,8 +37,7 @@ public class BaseMethod extends WebDriverFactory
 	{
 		URL aURL = new URL(WebsiteURL);
 		String WebName = aURL.getHost();
-		String WebSiteName = WebName.toUpperCase();
-		return WebSiteName;
+		return WebName.toUpperCase();
 	}
 
 
@@ -117,7 +113,8 @@ public class BaseMethod extends WebDriverFactory
 		BufferedImage bufferedImage = re.createScreenCapture(area);
 		// Save as PNG
 		File file = new File(robotImageName);
-		if (file.exists()) {
+		if (file.exists())
+		{
 			file.delete();
 		}
 		ImageIO.write(bufferedImage, "png", file);
@@ -165,37 +162,32 @@ public class BaseMethod extends WebDriverFactory
 
 
 	/* To ScrollUp using JavaScript Executor */
-	public void scrollUp() throws Exception 
-	{
+	public void scrollUp() {
 		((JavascriptExecutor) getWebDriver()).executeScript("scroll(0, -100);");
 	}
 
 
 	/* To ScrollDown using JavaScript Executor */
-	public void scrollDown() throws Exception 
-	{
+	public void scrollDown() {
 		((JavascriptExecutor) getWebDriver()).executeScript("scroll(0, 100);");
 	}
 
 
 	/* To Move cursor to the Desired Location */
-	public void moveCursor(int X_Position, int Y_Position) throws Exception 
-	{
+	public void moveCursor(int X_Position, int Y_Position) {
 		re.mouseMove(X_Position, Y_Position);
 	}
 
 
 	/* To Accept the Alert Dialog Message */
-	public void alertAccept() throws Exception
-	{
+	public void alertAccept() {
 		al = getWebDriver().switchTo().alert();
 		al.accept();
 	}
 
 
 	/* To Dismiss the Alert Dialog Message */
-	public void alertDismiss() throws Exception 
-	{
+	public void alertDismiss() {
 		al = getWebDriver().switchTo().alert();
 		al.dismiss();
 	}
@@ -298,8 +290,7 @@ public class BaseMethod extends WebDriverFactory
 
 
 	/*To Drag from the given WebElement Location and Drop at the given WebElement location */
-	public void dragandDropTo(WebElement Source, int XOffset, int YOffset) throws Exception 
-	{
+	public void dragandDropTo(WebElement Source, int XOffset, int YOffset) {
 		ac = new Actions(getWebDriver());
 		ac.dragAndDropBy(Source, XOffset, YOffset);
 	}
@@ -340,29 +331,25 @@ public class BaseMethod extends WebDriverFactory
 
 
 	/*To Switch To Frame By Index */
-	public void switchToFrameByIndex(int index) throws Exception
-	{
+	public void switchToFrameByIndex(int index) {
 		getWebDriver().switchTo().frame(index);
 	}
 
 
 	/*To Switch To Frame By Frame Name */
-	public void switchToFrameByFrameName(String frameName) throws Exception
-	{
+	public void switchToFrameByFrameName(String frameName) {
 		getWebDriver().switchTo().frame(frameName);
 	}
 
 
 	/*To Switch To Frame By Web Element */
-	public void switchToFrameByWebElement(WebElement element) throws Exception
-	{
+	public void switchToFrameByWebElement(WebElement element) {
 		getWebDriver().switchTo().frame(element);
 	}
 
 
 	/*To Switch out of a Frame */
-	public void switchOutOfFrame() throws Exception
-	{
+	public void switchOutOfFrame() {
 		getWebDriver().switchTo().defaultContent();
 	}
 
@@ -370,15 +357,14 @@ public class BaseMethod extends WebDriverFactory
 	/*To Get Tooltip Text */
 	public String getTooltipText(WebElement element)
 	{
-		String tooltipText = element.getAttribute("title").trim();
-		return tooltipText;
+		return element.getAttribute("title").trim();
 	}
 
 
 	/*To Close all Tabs/Windows except the First Tab */
 	public void closeAllTabsExceptFirst() 
 	{
-		ArrayList<String> tabs = new ArrayList<String> (getWebDriver().getWindowHandles());
+		ArrayList<String> tabs = new ArrayList<>(getWebDriver().getWindowHandles());
 		for(int i=1;i<tabs.size();i++)
 		{	
 			getWebDriver().switchTo().window(tabs.get(i));
@@ -391,7 +377,7 @@ public class BaseMethod extends WebDriverFactory
 	/*To Print all the Windows */
 	public void printAllTheWindows() 
 	{
-		ArrayList<String> al = new ArrayList<String>(getWebDriver().getWindowHandles());
+		ArrayList<String> al = new ArrayList<>(getWebDriver().getWindowHandles());
 		for(String window : al)
 		{
 			System.out.println(window);

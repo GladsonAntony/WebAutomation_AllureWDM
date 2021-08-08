@@ -1,13 +1,13 @@
-/**
- * @Author Gladson Antony
- * @Date Apr 25, 2017
- */
 package controllers;
-
 
 import ru.qatools.properties.Property;
 import ru.qatools.properties.PropertyLoader;
 import ru.qatools.properties.Resource;
+
+/**
+ * @Author Gladson Antony
+ * @Date 2021-08-09T00:18:07.145Z
+ */
 
 @Resource.Classpath("ApplicationConfig.properties")
 public class ApplicationConfigReader 
@@ -52,7 +52,4 @@ public class ApplicationConfigReader
 	public String getVideoFeature() {
 		return VideoFeature;
 	}
-	
-	
-
 }

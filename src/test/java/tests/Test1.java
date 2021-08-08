@@ -2,7 +2,6 @@ package tests;
 
 import controllers.ExcelDataProvider;
 import io.qameta.allure.Description;
-import io.qameta.allure.Features;
 import org.testng.annotations.Test;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 

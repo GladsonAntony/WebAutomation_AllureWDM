@@ -1,6 +1,3 @@
-/**
- * 
- */
 package pageObjects.pages;
 
 import io.qameta.allure.Step;
@@ -11,8 +8,8 @@ import utils.AllureAttachments;
 import utils.RandomGenerator;
 
 /**
- * @author ${Gladson Antony}
- * @date Sep 17, 2016
+ * @Author ${Gladson Antony}
+ * @Date 2021-08-09T00:49:01.042Z
  * 
  */
 public class GoogleHomePageObjects extends PageFactoryInitializer
