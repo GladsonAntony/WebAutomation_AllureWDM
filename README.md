@@ -15,14 +15,12 @@ This is a Selenium Hybrid Framework.
 ### Browsers Supported
  - Mozilla Firefox
  - Google Chrome
- - Internet Explorer
  - Opera
- - Microsoft Edge
+ - Microsoft Edge Chromium
 
 ### Headerless Support
- - HTMLUnit
+ - Firefox Headless
  - Chrome Headless
- - Phantom JS
 
 ### Platform Support
  - Windows
@@ -31,7 +29,7 @@ This is a Selenium Hybrid Framework.
 
 ---
 ### Reporting
- - [Allure Reporting](http://allure.qatools.ru/)
+ - [Allure Reporting](https://docs.qameta.io/allure/)
  
 ---
 ### Usage
@@ -45,13 +43,11 @@ $ mvn clean test
  or use Maven to invoke different browsers
 
 ```sh
-$ mvn clean test -DBrowserType=Chrome			#Chrome
+$ mvn clean test -DBrowserType=Chrome			    #Chrome
 $ mvn clean test -DBrowserType=Chrome_Headless		#Chrome Headless
-$ mvn clean test -DBrowserType=Firefox			#Mozilla Firefox
-$ mvn clean test -DBrowserType=IE			#Internet Explorer
-$ mvn clean test -DBrowserType=Opera			#Opera Blink
-$ mvn clean test -DBrowserType=Edge			#Microsoft Edge
-$ mvn clean test -DBrowserType=Unit			#HTML Unit Headerless Browser
+$ mvn clean test -DBrowserType=Firefox			    #Mozilla Firefox
+$ mvn clean test -DBrowserType=Opera			    #Opera Blink
+$ mvn clean test -DBrowserType=Edge			        #Microsoft Edge
 ```
 ---
 ### Report Generation
