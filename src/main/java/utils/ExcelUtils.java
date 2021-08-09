@@ -182,6 +182,9 @@ public class ExcelUtils {
             } else if (xlsxCell.getCellType() == CellType.BOOLEAN) {
                 boolean booleanCellData = xlsxCell.getBooleanCellValue();
                 CellData = booleanCellData;
+            } else if (xlsxCell.getCellType() == CellType.FORMULA) {
+                String formulaCellData = xlsxCell.getCellFormula();
+                CellData = formulaCellData;
             }
             return CellData;
         } catch (Exception e) {
@@ -199,17 +202,16 @@ public class ExcelUtils {
             if (xlsCell.getCellType() == CellType.STRING) {
                 String stringCellData = xlsCell.getStringCellValue();
                 CellData = stringCellData;
+            } else if (xlsCell.getCellType() == CellType.NUMERIC) {
+                double numericCellData = xlsCell.getNumericCellValue();
+                CellData = numericCellData;
+            } else if (xlsCell.getCellType() == CellType.BOOLEAN) {
+                boolean booleanCellData = xlsCell.getBooleanCellValue();
+                CellData = booleanCellData;
+            } else if (xlsxCell.getCellType() == CellType.FORMULA) {
+                String formulaCellData = xlsxCell.getCellFormula();
+                CellData = formulaCellData;
             }
-			/*		else if(xlsCell.getCellType() == Cell.CELL_TYPE_NUMERIC)
-			{
-				double numericCellData =  xlsCell.getNumericCellValue();
-				CellData = numericCellData;
-			}
-			else if(xlsCell.getCellType() == Cell.CELL_TYPE_BOOLEAN)
-			{
-				boolean booleanCellData =  xlsCell.getBooleanCellValue();
-				CellData = booleanCellData;
-			}	*/
             return CellData;
         } catch (Exception e) {
             return "";

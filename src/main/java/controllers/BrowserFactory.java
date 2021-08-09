@@ -81,10 +81,10 @@ public class BrowserFactory extends InitMethod {
     }
 
     public static void implicitlyWait(int timeInSeconds) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ImplicitlyWait));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeInSeconds));
     }
 
     public static void setMaxPageLoadTime(int timeInSeconds) {
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(MaxPageLoadTime));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeInSeconds));
     }
 }

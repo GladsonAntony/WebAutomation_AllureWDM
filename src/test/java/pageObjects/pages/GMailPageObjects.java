@@ -28,7 +28,7 @@ public class GMailPageObjects extends PageFactoryInitializer
 
 	@Step("Verify the Page Title of the GMail Page")
 	public GMailPageObjects verifyPageTitle() {
-		Assert.assertEquals(getWebDriver().getTitle(), "gagagasgasg");
+		Assert.assertEquals(getWebDriver().getTitle(), "Google");
 		return this;
 	}
 	

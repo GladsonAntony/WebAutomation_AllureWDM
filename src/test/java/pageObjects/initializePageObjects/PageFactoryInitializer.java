@@ -9,6 +9,7 @@ import pageObjects.pages.GoogleHomePageObjects;
  * @Author Gladson Antony
  * @Date 2021-08-09T00:47:31.266Z
  */
+
 public class PageFactoryInitializer extends BaseMethod {
     public GoogleHomePageObjects googleHomePage() {
         return PageFactory.initElements(getWebDriver(), GoogleHomePageObjects.class);

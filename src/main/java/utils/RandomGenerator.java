@@ -23,7 +23,6 @@ public class RandomGenerator {
         int num = Integer.parseInt(output.toString());
         int maxnum = (num * 10) - 1;
         int randnum = num + rand.nextInt(maxnum) + 1;
-
         return Integer.toString(randnum);
     }
 
@@ -64,7 +63,6 @@ public class RandomGenerator {
             char c = (char) (rand.nextInt(26) + 'A');
             output.append(c);
         }
-
         return output.toString();
     }
 
@@ -82,14 +80,12 @@ public class RandomGenerator {
     public static String GenerateRandomEMAILIDs() {
         String EmailID = RandomStringUtils.randomAlphabetic(15);
         String Domain = RandomStringUtils.randomAlphabetic(7).toLowerCase();
-
         return EmailID + "@" + Domain + ".com";
     }
 
     /*	To Generate Random E-Mail IDs.*/
     public static String GenerateRandomEMAILIDs(String DomainName) {
         String EmailID = RandomStringUtils.randomAlphabetic(15);
-
         return EmailID + "@" + DomainName;
     }
 }

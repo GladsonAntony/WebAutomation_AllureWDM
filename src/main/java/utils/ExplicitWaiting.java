@@ -21,8 +21,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element to be Clickable
      */
-    public static void explicitWaitElementToBeClickable(WebElement element, int time) {
-        WebDriverWait clickableWait = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitElementToBeClickable(WebElement element, int milliSeconds) {
+        WebDriverWait clickableWait = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         clickableWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
@@ -30,8 +30,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element to be Selectable
      */
-    public static void explicitWaitElementToBeSelected(WebElement element, int time) {
-        WebDriverWait selectableWait = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitElementToBeSelected(WebElement element, int milliSeconds) {
+        WebDriverWait selectableWait = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         selectableWait.until(ExpectedConditions.elementToBeSelected(element));
     }
 
@@ -39,8 +39,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element has the text
      */
-    public static void explicitWaitTextToBePresentInElement(WebElement element, int time, String text) {
-        WebDriverWait textToBePresent = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitTextToBePresentInElement(WebElement element, int milliSeconds, String text) {
+        WebDriverWait textToBePresent = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         textToBePresent.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
@@ -48,8 +48,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Title contains the text
      */
-    public static void explicitWaitTitleContains(WebElement element, int time, String title) {
-        WebDriverWait titleContains = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitTitleContains(WebElement element, int milliSeconds, String title) {
+        WebDriverWait titleContains = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         titleContains.until(ExpectedConditions.titleContains(title));
     }
 
@@ -57,8 +57,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Title is
      */
-    public static void explicitWaitTitleIs(WebElement element, int time, String title) {
-        WebDriverWait titleIs = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitTitleIs(WebElement element, int milliSeconds, String title) {
+        WebDriverWait titleIs = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         titleIs.until(ExpectedConditions.titleIs(title));
     }
 
@@ -66,8 +66,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element to be Visible
      */
-    public static void explicitWaitVisibilityOfElement(WebElement element, int time) {
-        WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitVisibilityOfElement(WebElement element, int milliSeconds) {
+        WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -75,8 +75,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element is Selected
      */
-    public static void explicitWaitSelectionStateToBe(WebElement element, int time, boolean selected) {
-        WebDriverWait elementIsSelected = new WebDriverWait(getWebDriver(), Duration.ofSeconds(time));
+    public static void explicitWaitSelectionStateToBe(WebElement element, int milliSeconds, boolean selected) {
+        WebDriverWait elementIsSelected = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         elementIsSelected.until(ExpectedConditions.elementSelectionStateToBe(element, selected));
     }
 
@@ -84,8 +84,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Elements to be Visible
      */
-    public static void explicitWaitVisibilityOfElements(List<WebElement> element, int time) {
-        WebDriverWait elementsToBeVisible = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitVisibilityOfElements(List<WebElement> element, int milliSeconds) {
+        WebDriverWait elementsToBeVisible = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         elementsToBeVisible.until(ExpectedConditions.visibilityOfAllElements(element));
     }
 
@@ -95,8 +95,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element to be Clickable
      */
-    public static void explicitWaitElementToBeClickable(By element, int time) {
-        WebDriverWait clickableWait = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitElementToBeClickable(By element, int milliSeconds) {
+        WebDriverWait clickableWait = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         clickableWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
@@ -104,8 +104,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element to be Selectable
      */
-    public static void explicitWaitElementToBeSelected(By element, int time) {
-        WebDriverWait selectableWait = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitElementToBeSelected(By element, int milliSeconds) {
+        WebDriverWait selectableWait = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         selectableWait.until(ExpectedConditions.elementToBeSelected(element));
     }
 
@@ -113,8 +113,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Title contains the text
      */
-    public static void explicitWaitTitleContains(By element, int time, String title) {
-        WebDriverWait titleContains = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitTitleContains(By element, int milliSeconds, String title) {
+        WebDriverWait titleContains = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         titleContains.until(ExpectedConditions.titleContains(title));
     }
 
@@ -122,8 +122,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Title is
      */
-    public static void explicitWaitTitleIs(By element, int time, String title) {
-        WebDriverWait titleIs = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitTitleIs(By element, int milliSeconds, String title) {
+        WebDriverWait titleIs = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         titleIs.until(ExpectedConditions.titleIs(title));
     }
 
@@ -131,8 +131,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element to be Visible
      */
-    public static void explicitWaitVisibilityOfElement(By element, int time) {
-        WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitVisibilityOfElement(By element, int milliSeconds) {
+        WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         elementToBeVisible.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
@@ -140,8 +140,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait Until Element is Selected
      */
-    public static void explicitWaitSelectionStateToBe(By element, int time, boolean selected) {
-        WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitSelectionStateToBe(By element, int milliSeconds, boolean selected) {
+        WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         elementToBeVisible.until(ExpectedConditions.elementSelectionStateToBe(element, selected));
     }
 
@@ -149,8 +149,8 @@ public class ExplicitWaiting extends BaseMethod {
     /**
      * To Wait for the Alert
      */
-    public static void explicitWaitForAlert(int time) {
-        WebDriverWait waitForAlert = new WebDriverWait(getWebDriver(), time);
+    public static void explicitWaitForAlert(int milliSeconds) {
+        WebDriverWait waitForAlert = new WebDriverWait(getWebDriver(), Duration.ofMillis(milliSeconds));
         waitForAlert.until(ExpectedConditions.alertIsPresent());
     }
 }

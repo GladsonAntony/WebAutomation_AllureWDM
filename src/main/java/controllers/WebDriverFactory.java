@@ -46,11 +46,6 @@ public class WebDriverFactory extends BrowserFactory {
                 WebDriverManager.edgedriver().setup();
                 break;
 
-            case "ghost":
-            case "phantom":
-                WebDriverManager.phantomjs().setup();
-                break;
-
             default:
                 throw new NotFoundException("Browser Not Found. Please Provide a Valid Browser");
         }
